@@ -23,7 +23,7 @@ let toastTimer;
 
 const referenceState = {
   category: "전체",
-  minSimilarity: 85,
+  subcategory: "전체",
   angle: "전체",
   light: "전체",
   verifiedOnly: true,
@@ -31,15 +31,40 @@ const referenceState = {
   sort: "popular"
 };
 
+const referenceSubcategories = {
+  전체: ["전체", "노트북", "카메라", "스마트폰", "헤드폰", "키보드", "테이블", "의자", "스포츠카", "SUV", "자전거", "음료", "디저트", "커피", "선글라스", "스니커즈", "바니티 백", "백팩", "향수", "립스틱", "메이크업", "스킨케어", "시계", "주얼리", "화병", "플랜트"],
+  전자기기: ["전체", "노트북", "카메라", "스마트폰", "헤드폰", "키보드", "태블릿"],
+  가구: ["전체", "사이드 테이블", "소파", "의자", "수납장"],
+  "자동차·이동수단": ["전체", "스포츠카", "SUV", "자전거"],
+  "음식·음료": ["전체", "음료", "디저트", "커피", "샐러드"],
+  패션소품: ["전체", "선글라스", "스니커즈", "패션"],
+  가방: ["전체", "바니티 백", "핸드백", "백팩"],
+  화장품: ["전체", "향수", "립스틱", "메이크업", "스킨케어"],
+  "주얼리·시계": ["전체", "시계", "주얼리"],
+  "홈·인테리어": ["전체", "사이드 테이블", "램프", "화병", "플랜트"]
+};
+
 const referenceItems = [
-  { title: "실버 맥북 · 침구 위", image: "assets/macbook.webp", category: "전자기기", label: "노트북", similarity: 94, angle: "45°", light: "자연광", zoom: "1배줌", horizon: "수평 0°", verified: true, price: "4,900원", order: 8, tags: ["금속 질감", "소프트 그림자"] },
-  { title: "월넛 사이드 테이블", image: "assets/side-table.webp", category: "가구", label: "사이드 테이블", similarity: 92, angle: "45°", light: "자연광", zoom: "1배줌", horizon: "수평 0°", verified: true, price: "4,900원", order: 7, tags: ["우드 톤", "창가 빛"] },
-  { title: "진회색 스포츠카", image: "assets/car.webp", category: "자동차·이동수단", label: "스포츠카", similarity: 96, angle: "0°", light: "역광", zoom: "1.5배줌", horizon: "수평 0°", verified: true, price: "5,900원", order: 6, tags: ["젖은 노면", "대칭 구도"] },
-  { title: "새틴 위 투명 향수", image: "assets/perfume.webp", category: "화장품", label: "향수", similarity: 93, angle: "45°", light: "자연광", zoom: "2배줌", horizon: "수평 0°", verified: true, price: "4,900원", order: 5, tags: ["유리 반사", "베이지 톤"] },
-  { title: "블랙 골드 립스틱", image: "assets/lipstick.webp", category: "화장품", label: "립스틱", similarity: 92, angle: "45°", light: "측광", zoom: "1배줌", horizon: "수평 0°", verified: true, price: "3,900원", order: 4, tags: ["하이 콘트라스트", "금속 포인트"] },
-  { title: "크림 모노그램 바니티", image: "assets/vanity-bag.webp", category: "가방", label: "바니티 백", similarity: 91, angle: "45°", light: "자연광", zoom: "1배줌", horizon: "수평 0°", verified: true, price: "4,900원", order: 3, tags: ["가죽 질감", "골드 체인"] },
-  { title: "빈티지 레드 바이크", image: "assets/bicycle.webp", category: "자동차·이동수단", label: "이동수단", similarity: 90, angle: "90°", light: "스튜디오", zoom: "1배줌", horizon: "수평 0°", verified: true, price: "3,900원", order: 2, tags: ["레드 포인트", "제품 전체"] },
-  { title: "여름 시트러스 드링크", image: "assets/fruit-drinks.jpg", category: "음식·음료", label: "음료", similarity: 94, angle: "45°", light: "자연광", zoom: "1배줌", horizon: "수평 0°", verified: false, price: "4,900원", order: 1, tags: ["오렌지 톤", "홍보 스타일"] }
+  { title: "실버 맥북 · 침구 위", image: "assets/macbook.webp", category: "전자기기", subcategory: "노트북", label: "노트북", similarity: 94, angle: "45°", light: "자연광", zoom: "1배줌", horizon: "수평 0°", verified: true, price: "4,900원", order: 20, tags: ["금속 질감", "소프트 그림자", "침구 배경"] },
+  { title: "월넛 사이드 테이블", image: "assets/side-table.webp", category: "가구", subcategory: "사이드 테이블", label: "사이드 테이블", similarity: 92, angle: "45°", light: "자연광", zoom: "1배줌", horizon: "수평 0°", verified: true, price: "4,900원", order: 19, tags: ["우드 톤", "창가 빛", "오브제 배치"] },
+  { title: "진회색 스포츠카", image: "assets/car.webp", category: "자동차·이동수단", subcategory: "스포츠카", label: "스포츠카", similarity: 96, angle: "0°", light: "역광", zoom: "1.5배줌", horizon: "수평 0°", verified: true, price: "5,900원", order: 18, tags: ["젖은 노면", "대칭 구도", "안개 톤"] },
+  { title: "새틴 위 투명 향수", image: "assets/perfume.webp", category: "화장품", subcategory: "향수", label: "향수", similarity: 93, angle: "45°", light: "자연광", zoom: "2배줌", horizon: "수평 0°", verified: true, price: "4,900원", order: 17, tags: ["유리 반사", "베이지 톤", "새틴 텍스처"] },
+  { title: "블랙 골드 립스틱", image: "assets/lipstick.webp", category: "화장품", subcategory: "립스틱", label: "립스틱", similarity: 92, angle: "45°", light: "측광", zoom: "1배줌", horizon: "수평 0°", verified: true, price: "3,900원", order: 16, tags: ["하이 콘트라스트", "금속 포인트", "오픈 패키지"] },
+  { title: "크림 모노그램 바니티", image: "assets/vanity-bag.webp", category: "가방", subcategory: "바니티 백", label: "바니티 백", similarity: 91, angle: "45°", light: "자연광", zoom: "1배줌", horizon: "수평 0°", verified: true, price: "4,900원", order: 15, tags: ["가죽 질감", "골드 체인", "웜 뉴트럴"] },
+  { title: "빈티지 레드 바이크", image: "assets/bicycle.webp", category: "자동차·이동수단", subcategory: "자전거", label: "자전거", similarity: 90, angle: "90°", light: "스튜디오", zoom: "1배줌", horizon: "수평 0°", verified: true, price: "3,900원", order: 14, tags: ["레드 포인트", "제품 전체", "빈티지 무드"] },
+  { title: "여름 시트러스 드링크", image: "assets/fruit-drinks.jpg", category: "음식·음료", subcategory: "음료", label: "음료", similarity: 94, angle: "45°", light: "자연광", zoom: "1배줌", horizon: "수평 0°", verified: true, price: "4,900원", order: 13, tags: ["오렌지 톤", "홍보 스타일", "과일 소품"] },
+  { title: "화이트 스마트폰 플랫레이", image: "assets/smartphone.jpg", category: "전자기기", subcategory: "스마트폰", label: "스마트폰", similarity: 93, angle: "45°", light: "자연광", zoom: "2배줌", horizon: "수평 0°", verified: true, price: "4,900원", order: 12, tags: ["화이트 배경", "대각선 구도", "데스크 셋업"] },
+  { title: "미니멀 블랙 키보드", image: "assets/keyboard.jpg", category: "전자기기", subcategory: "키보드", label: "키보드", similarity: 91, angle: "0°", light: "측광", zoom: "1.5배줌", horizon: "수평 0°", verified: true, price: "4,900원", order: 11, tags: ["키캡 디테일", "하드 그림자", "제품 정렬"] },
+  { title: "실버 태블릿 · 책상 위", image: "assets/tablet.jpg", category: "전자기기", subcategory: "태블릿", label: "태블릿", similarity: 90, angle: "45°", light: "자연광", zoom: "1.5배줌", horizon: "수평 0°", verified: true, price: "4,900원", order: 10, tags: ["실버 바디", "탑뷰", "소프트 톤"] },
+  { title: "블랙 미니멀 백팩", image: "assets/backpack.jpg", category: "가방", subcategory: "백팩", label: "백팩", similarity: 92, angle: "45°", light: "자연광", zoom: "1.5배줌", horizon: "수평 0°", verified: true, price: "4,900원", order: 9, tags: ["패브릭 질감", "건축 그림자", "정면 제품샷"] },
+  { title: "골드 주얼리 클로즈업", image: "assets/jewelry.jpg", category: "주얼리·시계", subcategory: "주얼리", label: "주얼리", similarity: 94, angle: "45°", light: "스튜디오", zoom: "2배줌", horizon: "수평 0°", verified: true, price: "5,900원", order: 8, tags: ["골드 반사", "매크로 디테일", "블랙 배경"] },
+  { title: "크림 라떼 · 카페 테이블", image: "assets/coffee.jpg", category: "음식·음료", subcategory: "커피", label: "커피", similarity: 90, angle: "45°", light: "자연광", zoom: "1배줌", horizon: "수평 0°", verified: true, price: "3,900원", order: 7, tags: ["브라운 톤", "카페 무드", "스팀 디테일"] },
+  { title: "컬러 샐러드 플랫레이", image: "assets/salad.jpg", category: "음식·음료", subcategory: "샐러드", label: "샐러드", similarity: 89, angle: "90°", light: "자연광", zoom: "1배줌", horizon: "수평 0°", verified: true, price: "3,900원", order: 6, tags: ["탑뷰", "컬러 대비", "플레이팅"] },
+  { title: "세라믹 화병 · 선반 위", image: "assets/vase.jpg", category: "홈·인테리어", subcategory: "화병", label: "화병", similarity: 92, angle: "0°", light: "자연광", zoom: "1배줌", horizon: "수평 0°", verified: true, price: "3,900원", order: 5, tags: ["세라믹 질감", "선반 스타일링", "뉴트럴 배경"] },
+  { title: "그린 플랜트 인테리어", image: "assets/plant.jpg", category: "홈·인테리어", subcategory: "플랜트", label: "플랜트", similarity: 90, angle: "45°", light: "자연광", zoom: "1배줌", horizon: "수평 0°", verified: true, price: "3,900원", order: 4, tags: ["그린 포인트", "창가 빛", "생활 공간"] },
+  { title: "웜톤 아이섀도 팔레트", image: "assets/makeup-palette.jpg", category: "화장품", subcategory: "메이크업", label: "메이크업", similarity: 91, angle: "45°", light: "스튜디오", zoom: "2배줌", horizon: "수평 0°", verified: true, price: "4,900원", order: 3, tags: ["컬러 스와치", "웜톤", "탑뷰"] },
+  { title: "민트 타일 스킨케어", image: "assets/skincare.jpg", category: "화장품", subcategory: "스킨케어", label: "스킨케어", similarity: 90, angle: "0°", light: "스튜디오", zoom: "2배줌", horizon: "수평 0°", verified: true, price: "4,900원", order: 2, tags: ["물방울 질감", "민트 톤", "욕실 배경"] },
+  { title: "실버 SUV · 안개 숲", image: "assets/suv.jpg", category: "자동차·이동수단", subcategory: "SUV", label: "SUV", similarity: 93, angle: "0°", light: "역광", zoom: "1.5배줌", horizon: "수평 0°", verified: true, price: "5,900원", order: 1, tags: ["차량 정면", "안개 톤", "로케이션 촬영"] }
 ];
 
 function showToast(message) {
@@ -176,21 +201,33 @@ viewTabs.forEach((tab) => tab.addEventListener("click", () => setView(tab.datase
 
 function matchesReference(item) {
   const query = referenceState.query.trim().toLowerCase();
-  const searchable = [item.title, item.category, item.label, item.angle, item.light, item.zoom, ...item.tags].join(" ").toLowerCase();
+  const searchable = [item.title, item.category, item.subcategory, item.label, item.angle, item.light, item.zoom, item.horizon, ...item.tags].join(" ").toLowerCase();
   return (!query || searchable.includes(query)) &&
     (referenceState.category === "전체" || item.category === referenceState.category) &&
-    item.similarity >= referenceState.minSimilarity &&
+    (referenceState.subcategory === "전체" || item.subcategory === referenceState.subcategory) &&
     (referenceState.angle === "전체" || item.angle === referenceState.angle) &&
     (referenceState.light === "전체" || item.light === referenceState.light) &&
     (!referenceState.verifiedOnly || item.verified);
 }
 
+function renderSubcategories() {
+  const container = document.querySelector("#reference-subcategories");
+  if (!container) return;
+  const options = referenceSubcategories[referenceState.category] || referenceSubcategories.전체;
+  if (!options.includes(referenceState.subcategory)) referenceState.subcategory = "전체";
+  container.innerHTML = options.map((subcategory) => `<button class="reference-subcategory${subcategory === referenceState.subcategory ? " active" : ""}" type="button" data-ref-subcategory="${subcategory}">${subcategory}</button>`).join("");
+  container.querySelectorAll(".reference-subcategory").forEach((button) => button.addEventListener("click", () => {
+    referenceState.subcategory = button.dataset.refSubcategory;
+    container.querySelectorAll(".reference-subcategory").forEach((item) => item.classList.toggle("active", item === button));
+    renderReferenceCards();
+  }));
+}
+
 function renderReferenceCards() {
   let items = referenceItems.filter(matchesReference);
   if (referenceState.sort === "latest") items = [...items].sort((a, b) => b.order - a.order);
-  if (referenceState.sort === "similar") items = [...items].sort((a, b) => b.similarity - a.similarity);
   document.querySelector("#reference-result-count").textContent = `${items.length}장 표시`;
-  document.querySelector("#reference-page-title").textContent = referenceState.category === "전체" ? "전체 레퍼런스" : referenceState.category;
+  document.querySelector("#reference-page-title").textContent = referenceState.subcategory !== "전체" ? referenceState.subcategory : referenceState.category === "전체" ? "전체 레퍼런스" : referenceState.category;
   referenceGrid.innerHTML = items.length ? items.map((item) => `
     <article class="reference-card">
       <div class="reference-card-media"><img src="${item.image}" alt="${item.title}" loading="lazy" /><button class="reference-capture" type="button" data-reference-capture="${item.title}">이 값으로 촬영</button></div>
@@ -200,7 +237,9 @@ function renderReferenceCards() {
 
 document.querySelectorAll(".reference-category").forEach((button) => button.addEventListener("click", () => {
   referenceState.category = button.dataset.refCategory;
+  referenceState.subcategory = "전체";
   document.querySelectorAll(".reference-category").forEach((item) => item.classList.toggle("active", item === button));
+  renderSubcategories();
   renderReferenceCards();
 }));
 
@@ -212,12 +251,6 @@ document.querySelectorAll(".ref-chips").forEach((group) => group.addEventListene
   group.querySelectorAll(".ref-chip").forEach((item) => item.classList.toggle("active", item === chip));
   renderReferenceCards();
 }));
-
-document.querySelector("#ref-similarity-range").addEventListener("input", (event) => {
-  referenceState.minSimilarity = Number(event.target.value);
-  document.querySelector("#ref-similarity-value").textContent = `${referenceState.minSimilarity}% 이상`;
-  renderReferenceCards();
-});
 
 document.querySelectorAll(".reference-sort-button").forEach((button) => button.addEventListener("click", () => {
   referenceState.sort = button.dataset.refSort;
@@ -237,5 +270,6 @@ document.querySelector("#reference-verified-toggle").addEventListener("click", (
   renderReferenceCards();
 });
 
+renderSubcategories();
 renderReferenceCards();
 if (window.location.hash === "#reference" || new URLSearchParams(window.location.search).get("view") === "reference") setView("reference");
