@@ -282,11 +282,11 @@ body.reference-mode #cart-button { display: none; }
 .reference-side-block + .reference-side-block { border-top: 1px solid var(--line); }
 .reference-side-label { display: block; margin: 0 5px 13px; color: #d8d8d3; font-size: 11px; font-weight: 700; }
 .reference-category-list { display: grid; gap: 4px; }
-.reference-category { display: flex; align-items: center; justify-content: space-between; min-height: 35px; padding: 0 9px; border-radius: 8px; color: #9a9b96; background: transparent; text-align: left; font-size: 11px; transition: background .18s ease, color .18s ease; }
+.reference-category { position: relative; display: flex; align-items: center; justify-content: space-between; min-height: 35px; padding: 0 9px; border-radius: 8px; color: #9a9b96; background: transparent; text-align: left; font-size: 11px; transition: background .18s ease, color .18s ease; }
 .reference-category b { padding: 4px 7px; border-radius: 10px; color: #777873; background: #242424; font-family: "DM Sans", sans-serif; font-size: 10px; font-weight: 500; }
 .reference-category:hover { color: #f4f4f0; background: rgba(255,255,255,.045); }
 .reference-category.active { color: #fff; background: var(--blue-soft); }
-.reference-category.active::before { content: ""; width: 3px; height: 17px; margin-left: -12px; margin-right: 1px; border-radius: 0 4px 4px 0; background: var(--blue); }
+.reference-category.active::before { content: ""; position: absolute; top: 50%; left: 0; width: 3px; height: 17px; border-radius: 0 4px 4px 0; background: var(--blue); transform: translateY(-50%); }
 .reference-category.active b { color: #fff; background: var(--blue); }
 .reference-detail-block { padding-top: 15px; padding-bottom: 17px; }
 .reference-subcategories { display: flex; flex-wrap: wrap; gap: 5px; }
