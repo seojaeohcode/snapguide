@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#080b10" />
+    <meta name="description" content="촬영값을 역산하는 사진 레퍼런스 플랫폼 SnapGuide" />
+    <title>SnapGuide — 촬영 레퍼런스</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="SnapGuide 홈">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48" role="img">
+              <circle cx="24" cy="24" r="7" fill="currentColor" />
+              <path d="M24 3a21 21 0 0 1 10.5 2.8l-6.2 10.7A8.8 8.8 0 0 0 24 15V3Z" fill="currentColor" />
+              <path d="M42.2 13.5a21 21 0 0 1 2.5 10.8H32.3a8.8 8.8 0 0 0-1.8-5.1l11.7-5.7Z" fill="currentColor" />
+              <path d="M40.5 35.8A21 21 0 0 1 31 43l-6.2-10.7a8.8 8.8 0 0 0 4.3-3.1l11.4 6.6Z" fill="currentColor" />
+              <path d="M16.8 44.2A21 21 0 0 1 6.7 37l11.6-6.7a8.8 8.8 0 0 0 4.6 2v12Z" fill="currentColor" />
+              <path d="M3.2 25A21 21 0 0 1 6 14.4l11.6 6.3a8.8 8.8 0 0 0-1 4.3H3.2Z" fill="currentColor" />
+              <path d="M12.3 7.7A21 21 0 0 1 22 3.2v12a8.8 8.8 0 0 0-4.1 2.1L12.3 7.7Z" fill="currentColor" />
+            </svg>
+          </span>
+          <span class="brand-word">snapguide</span>
+        </a>
+
+        <label class="global-search" for="search-input">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg>
+          <input id="search-input" type="search" placeholder="촬영하고 싶은 사진을 검색하거나 업로드하세요" autocomplete="off" />
+          <kbd>⌘ K</kbd>
+        </label>
+
+        <div class="top-actions">
+          <button class="top-link pro-link" type="button" data-toast="Pro 플랜은 곧 공개됩니다.">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 3 4 5 .8-3.5 3.5.8 5-5.3-2.2-5.3 2.2.8-5L4 7.8 9 7l3-4Z"></path><path d="M7.5 20.5h9"></path></svg>
+            멤버십
+          </button>
+          <button class="top-link" type="button" data-toast="북마크한 레퍼런스를 준비 중입니다.">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4.5A2.5 2.5 0 0 1 8.5 2h7A2.5 2.5 0 0 1 18 4.5V21l-6-3.7L6 21V4.5Z"></path></svg>
+            북마크
+          </button>
+          <button class="profile" type="button" aria-label="프로필" data-toast="프로필 메뉴를 준비 중입니다.">SJ</button>
+        </div>
+      </header>
+
+      <aside class="sidebar panel">
+        <div class="sidebar-section category-section">
+          <div class="section-label">카테고리</div>
+          <nav class="category-list" aria-label="카테고리">
+            <button class="category-row" type="button" data-category="전체" data-count="1,284"><span class="category-icon grid-icon" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>전체</span><span class="count-badge">1,284</span></button>
+            <button class="category-row active" type="button" data-category="가전제품" data-count="312"><span class="category-icon monitor-icon" aria-hidden="true"></span><span>가전제품</span><span class="count-badge">312</span></button>
+            <button class="category-row" type="button" data-category="가구" data-count="198"><span class="category-icon chair-icon" aria-hidden="true"></span><span>가구</span><span class="count-badge">198</span></button>
+            <button class="category-row" type="button" data-category="자동차" data-count="241"><span class="category-icon car-icon" aria-hidden="true"></span><span>자동차</span><span class="count-badge">241</span></button>
+            <button class="category-row" type="button" data-category="음식" data-count="176"><span class="category-icon food-icon" aria-hidden="true">✣</span><span>음식</span><span class="count-badge">176</span></button>
+            <button class="category-row" type="button" data-category="화장품" data-count="157"><span class="category-icon bottle-icon" aria-hidden="true"></span><span>화장품</span><span class="count-badge">157</span></button>
+          </nav>
+        </div>
+
+        <div class="sidebar-section filter-section">
+          <div class="section-label">촬영 필터</div>
+          <div class="filter-block">
+            <div class="filter-title-row"><span>유사도</span><strong id="similarity-value">85% 이상</strong></div>
+            <input id="similarity-range" class="range-input" type="range" min="50" max="100" value="85" />
+          </div>
+
+          <div class="filter-block">
+            <div class="filter-title-row"><span>촬영 각도</span></div>
+            <div class="chip-row" data-chip-group="angle">
+              <button type="button" class="filter-chip" data-chip="0°">0°</button><button type="button" class="filter-chip active" data-chip="45°">45°</button><button type="button" class="filter-chip" data-chip="90°">90°</button><button type="button" class="filter-chip" data-chip="하이앵글">하이앵글</button><button type="button" class="filter-chip" data-chip="로우앵글">로우앵글</button>
+            </div>
+          </div>
+
+          <div class="filter-block">
+            <div class="filter-title-row"><span>조명</span></div>
+            <div class="chip-row" data-chip-group="light">
+              <button type="button" class="filter-chip active" data-chip="자연광">자연광</button><button type="button" class="filter-chip" data-chip="측광">측광</button><button type="button" class="filter-chip" data-chip="역광">역광</button><button type="button" class="filter-chip" data-chip="스튜디오">스튜디오</button>
+            </div>
+          </div>
+
+          <div class="verified-row"><span>실촬영 인증만</span><button class="toggle active" type="button" role="switch" aria-checked="true" aria-label="실촬영 인증만 보기"><span></span></button></div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <section class="content-heading">
+          <div><p class="eyebrow"><span class="eyebrow-dot"></span> PHOTO REFERENCE INDEX</p><h1 id="page-title">가전제품</h1><p class="subheading" id="page-subtitle">레퍼런스 312장 <span>·</span> 촬영값 역산 완료</p></div>
+          <div class="heading-actions">
+            <button class="icon-button" type="button" data-toast="보기 옵션을 준비 중입니다." aria-label="보기 옵션"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path><circle cx="8" cy="7" r="2"></circle><circle cx="15" cy="12" r="2"></circle><circle cx="11" cy="17" r="2"></circle></svg></button>
+            <button class="upload-button" id="upload-button" type="button"><span>+</span> 이미지 업로드</button><input id="upload-input" type="file" accept="image/*" hidden />
+          </div>
+        </section>
+
+        <div class="content-toolbar"><div class="sort-tabs" role="tablist" aria-label="정렬"><button class="sort-tab active" type="button" data-sort="popular" role="tab">인기순</button><button class="sort-tab" type="button" data-sort="latest" role="tab">최신순</button><button class="sort-tab" type="button" data-sort="similar" role="tab">유사도순</button></div><span class="result-count" id="result-count">312 references</span></div>
+        <section id="reference-grid" class="reference-grid" aria-live="polite"></section>
+      </main>
+
+      <aside class="right-rail">
+        <section class="rail-card panel trending-card"><div class="rail-heading"><div><span class="rail-kicker">TODAY</span><h2>실시간 인기 레퍼런스</h2></div><span class="live-pulse"></span></div>
+          <div class="trending-list">
+            <button class="trend-item" type="button" data-toast="롤렉스 서브마리너 레퍼런스를 열었습니다."><span class="trend-number">1</span><img src="assets/macbook.webp" alt="시계 레퍼런스" /><span class="trend-name">롤렉스 서브마리너<small><b>95%</b> · 45° · 자연광</small></span></button>
+            <button class="trend-item" type="button" data-toast="이케아 POÄNG 체어 레퍼런스를 열었습니다."><span class="trend-number">2</span><img src="assets/side-table.webp" alt="의자 레퍼런스" /><span class="trend-name">이케아 POÄNG 체어<small><b>93%</b> · 45° · 자연광</small></span></button>
+            <button class="trend-item" type="button" data-toast="딸기 생크림 케이크 레퍼런스를 열었습니다."><span class="trend-number">3</span><img src="assets/lipstick.webp" alt="케이크 레퍼런스" /><span class="trend-name">딸기 생크림 케이크<small><b>92%</b> · 45° · 자연광</small></span></button>
+            <button class="trend-item" type="button" data-toast="소니 A7C II 레퍼런스를 열었습니다."><span class="trend-number">4</span><img src="assets/vanity-bag.webp" alt="카메라 레퍼런스" /><span class="trend-name">소니 A7C II<small><b>91%</b> · 45° · 자연광</small></span></button>
+            <button class="trend-item" type="button" data-toast="나이키 덩크 로우 레퍼런스를 열었습니다."><span class="trend-number">5</span><img src="assets/bicycle.webp" alt="스니커즈 레퍼런스" /><span class="trend-name">나이키 덩크 로우<small><b>90%</b> · 45° · 자연광</small></span></button>
+          </div>
+        </section>
+
+        <section class="rail-card panel score-card"><div class="rail-kicker">YOUR LAST CAPTURE</div><h2>내 촬영 유사도</h2>
+          <div class="score-list"><div class="score-row"><span>시점</span><div class="score-track"><i style="width:85%"></i></div><strong>85</strong></div><div class="score-row"><span>각도</span><div class="score-track"><i style="width:76%"></i></div><strong>76</strong></div><div class="score-row"><span>조명</span><div class="score-track"><i style="width:82%"></i></div><strong>82</strong></div><div class="score-row"><span>수평</span><div class="score-track"><i style="width:90%"></i></div><strong>90</strong></div><div class="score-row"><span>초점</span><div class="score-track"><i style="width:88%"></i></div><strong>88</strong></div></div>
+          <button class="text-action" type="button" data-toast="촬영값 리포트를 준비 중입니다.">상세 리포트 보기 <span>↗</span></button>
+        </section>
+
+        <section class="pro-card"><div class="pro-orbit orbit-one"></div><div class="pro-orbit orbit-two"></div><div class="pro-topline"><span class="pro-badge">PRO</span><span class="crown">♛</span></div><h2>SnapGuide Pro</h2><p>무제한 촬영값 역산<br />더 정밀한 필터와 개인화 가이드</p><div class="pro-price"><strong>9,900원</strong><span>/ 월</span></div><button class="pro-button" type="button" data-toast="Pro 업그레이드 페이지를 준비 중입니다.">업그레이드 <span>→</span></button></section>
+      </aside>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
