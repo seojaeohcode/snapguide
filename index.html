@@ -21,13 +21,10 @@
           <span class="brand-name">snapguide</span><span class="brand-divider"></span><span class="brand-store">STORE</span>
         </a>
 
-        <nav class="main-nav" aria-label="스토어 메뉴">
-          <a class="nav-link active" href="#products" data-category-link="스마트 조명">스마트 조명</a>
-          <a class="nav-link" href="#products" data-category-link="휴대용 조명">휴대용 조명</a>
-          <a class="nav-link" href="#products" data-category-link="촬영 장비">촬영 장비</a>
-          <a class="nav-link" href="#packages">패키지</a>
-          <a class="nav-link" href="#process">연동 가이드</a>
-        </nav>
+        <div class="view-tabs" role="tablist" aria-label="SnapGuide 서비스 탭">
+          <button class="view-tab" id="reference-tab" type="button" role="tab" aria-selected="false" data-view="reference">사진 레퍼런스</button>
+          <button class="view-tab active" id="store-tab" type="button" role="tab" aria-selected="true" data-view="store">조명 스토어</button>
+        </div>
 
         <div class="header-tools">
           <label class="store-search" for="store-search-input">
@@ -49,7 +46,7 @@
         </div>
       </header>
 
-      <main>
+      <main id="store-view" class="view-panel" data-view-panel="store">
         <section class="hero-section" id="home">
           <div class="hero-copy">
             <p class="eyebrow"><span class="eyebrow-dot"></span> SNAPGUIDE × SMART LIGHTING</p>
@@ -129,6 +126,35 @@
           </div>
         </section>
       </main>
+
+      <section id="reference-view" class="view-panel" data-view-panel="reference" hidden aria-labelledby="reference-view-title">
+        <div class="reference-shell">
+          <div class="reference-view-head">
+            <div><p class="section-kicker">PHOTO REFERENCE INDEX</p><h1 id="reference-view-title">촬영하고 싶은 사진을 찾아보세요</h1><p>레퍼런스의 구도와 빛을 분석해 카메라·조명 설정값으로 연결합니다.</p></div>
+            <button class="button button-primary" type="button" data-toast="레퍼런스 업로드를 준비 중입니다.">이미지 업로드 <span>+</span></button>
+          </div>
+          <div class="reference-layout">
+            <aside class="reference-sidebar">
+              <div class="reference-side-block"><span class="reference-side-label">카테고리</span><div class="reference-category-list">
+                <button class="reference-category active" type="button" data-ref-category="전체"><span>전체 레퍼런스</span><b>1,284</b></button>
+                <button class="reference-category" type="button" data-ref-category="전자기기"><span>전자기기</span><b>428</b></button>
+                <button class="reference-category" type="button" data-ref-category="가구"><span>가구</span><b>198</b></button>
+                <button class="reference-category" type="button" data-ref-category="자동차·이동수단"><span>자동차·이동수단</span><b>254</b></button>
+                <button class="reference-category" type="button" data-ref-category="음식·음료"><span>음식·음료</span><b>276</b></button>
+                <button class="reference-category" type="button" data-ref-category="패션소품"><span>패션소품</span><b>364</b></button>
+                <button class="reference-category" type="button" data-ref-category="가방"><span>가방</span><b>221</b></button>
+                <button class="reference-category" type="button" data-ref-category="화장품"><span>화장품</span><b>157</b></button>
+              </div></div>
+              <div class="reference-side-block reference-filters"><span class="reference-side-label">촬영 필터</span><div class="ref-filter-row"><div><span>유사도</span><strong id="ref-similarity-value">85% 이상</strong></div><input id="ref-similarity-range" type="range" min="50" max="100" value="85" /></div><div class="ref-filter-group"><span>촬영 각도</span><div class="ref-chips" data-ref-filter="angle"><button class="ref-chip active" type="button" data-value="전체">전체</button><button class="ref-chip" type="button" data-value="0°">0°</button><button class="ref-chip" type="button" data-value="45°">45°</button><button class="ref-chip" type="button" data-value="90°">90°</button></div></div><div class="ref-filter-group"><span>조명</span><div class="ref-chips" data-ref-filter="light"><button class="ref-chip active" type="button" data-value="전체">전체</button><button class="ref-chip" type="button" data-value="자연광">자연광</button><button class="ref-chip" type="button" data-value="측광">측광</button><button class="ref-chip" type="button" data-value="역광">역광</button><button class="ref-chip" type="button" data-value="스튜디오">스튜디오</button></div></div><div class="reference-verified"><span>실촬영 인증만</span><button class="reference-toggle active" id="reference-verified-toggle" type="button" role="switch" aria-checked="true"><i></i></button></div></div>
+            </aside>
+            <section class="reference-main">
+              <div class="reference-main-head"><div><span class="reference-count-label" id="reference-result-count">15장 표시</span><h2 id="reference-page-title">전체 레퍼런스</h2></div><label class="reference-search" for="reference-search-input"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg><input id="reference-search-input" type="search" placeholder="레퍼런스 검색" /></label></div>
+              <div class="reference-toolbar"><div class="reference-sort"><button class="reference-sort-button active" type="button" data-ref-sort="popular">인기순</button><button class="reference-sort-button" type="button" data-ref-sort="latest">최신순</button><button class="reference-sort-button" type="button" data-ref-sort="similar">유사도순</button></div><span>촬영값 역산 완료</span></div>
+              <div class="reference-grid" id="reference-grid" aria-live="polite"></div>
+            </section>
+          </div>
+        </div>
+      </section>
 
       <footer class="site-footer"><a class="brand footer-brand" href="#home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="7" fill="currentColor" /><path d="M24 3a21 21 0 0 1 10.5 2.8l-6.2 10.7A8.8 8.8 0 0 0 24 15V3Z" fill="currentColor" /><path d="M42.2 13.5a21 21 0 0 1 2.5 10.8H32.3a8.8 8.8 0 0 0-1.8-5.1l11.7-5.7Z" fill="currentColor" /><path d="M40.5 35.8A21 21 0 0 1 31 43l-6.2-10.7a8.8 8.8 0 0 0 4.3-3.1l11.4 6.6Z" fill="currentColor" /><path d="M16.8 44.2A21 21 0 0 1 6.7 37l11.6-6.7a8.8 8.8 0 0 0 4.6 2v12Z" fill="currentColor" /><path d="M3.2 25A21 21 0 0 1 6 14.4l11.6 6.3a8.8 8.8 0 0 0-1 4.3H3.2Z" fill="currentColor" /><path d="M12.3 7.7A21 21 0 0 1 22 3.2v12a8.8 8.8 0 0 0-4.1 2.1L12.3 7.7Z" fill="currentColor" /></svg></span><span class="brand-name">snapguide</span></a><span>촬영의 완성은 빛에서 시작됩니다.</span><div class="footer-links"><a href="#products">스토어</a><a href="#process">연동 가이드</a><a href="mailto:hello@snapguide.local">문의하기</a></div></footer>
     </div>
