@@ -12,3 +12,10 @@
 - [핸드백](https://images.unsplash.com/photo-1598099947145-e85739e7ca28)
 
 기존 WEBP와 `fruit-drinks.jpg`는 사용자 제공 자료를 기반으로 한 기존 레퍼런스 자산입니다.
+
+스토어 화면에 추가한 조명 이미지:
+
+- [스토어 히어로](https://images.unsplash.com/photo-1571406487954-dc11b0c0767d)
+- `lamp-pendant.jpg` — [벽면 램프](https://images.unsplash.com/photo-1507473885765-e6ed057f782c)
+- `lamp-table.jpg` — [청록 벽면 펜던트](https://images.unsplash.com/photo-1513506003901-1e6a229e2d15)
+- `lamp-modern.jpg` — [화이트 펜던트 인테리어](https://images.unsplash.com/photo-1524484485831-a92ffc0de03f)

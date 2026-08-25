@@ -1,349 +1,135 @@
-const references = [
-  {
-    title: "실버 맥북 · 침구 위",
-    image: "assets/macbook.webp",
-    category: "전자기기",
-    categoryLabel: "노트북",
-    similarity: 94,
-    angle: "45°",
-    light: "자연광",
-    zoom: "1배줌",
-    horizon: "수평 0°",
-    verified: true,
-    price: "4,900원",
-    order: 8,
-    tags: ["금속 질감", "소프트 그림자", "제품 정면"]
-  },
-  {
-    title: "월넛 사이드 테이블",
-    image: "assets/side-table.webp",
-    category: "홈·인테리어",
-    categoryLabel: "사이드 테이블",
-    similarity: 92,
-    angle: "45°",
-    light: "자연광",
-    zoom: "1배줌",
-    horizon: "수평 0°",
-    verified: true,
-    price: "4,900원",
-    order: 7,
-    tags: ["우드 톤", "창가 빛", "수직 구도"]
-  },
-  {
-    title: "진회색 스포츠카",
-    image: "assets/car.webp",
-    category: "자동차·이동수단",
-    categoryLabel: "스포츠카",
-    similarity: 96,
-    angle: "0°",
-    light: "역광",
-    zoom: "1.5배줌",
-    horizon: "수평 0°",
-    verified: true,
-    price: "5,900원",
-    order: 6,
-    tags: ["젖은 노면", "대칭 구도", "안개 배경"]
-  },
-  {
-    title: "새틴 위 투명 향수",
-    image: "assets/perfume.webp",
-    category: "화장품",
-    categoryLabel: "향수",
-    similarity: 93,
-    angle: "45°",
-    light: "자연광",
-    zoom: "2배줌",
-    horizon: "수평 0°",
-    verified: true,
-    price: "4,900원",
-    order: 5,
-    tags: ["유리 반사", "베이지 톤", "새틴 질감"]
-  },
-  {
-    title: "블랙 골드 립스틱",
-    image: "assets/lipstick.webp",
-    category: "화장품",
-    similarity: 92,
-    angle: "45°",
-    light: "측광",
-    zoom: "1배줌",
-    horizon: "수평 0°",
-    verified: true,
-    price: "3,900원",
-    order: 4,
-    tags: ["하이 콘트라스트", "화이트 배경", "금속 포인트"]
-  },
-  {
-    title: "크림 모노그램 바니티",
-    image: "assets/vanity-bag.webp",
-    category: "가방",
-    categoryLabel: "바니티 백",
-    similarity: 91,
-    angle: "45°",
-    light: "자연광",
-    zoom: "1배줌",
-    horizon: "수평 0°",
-    verified: true,
-    price: "4,900원",
-    order: 3,
-    tags: ["가죽 질감", "골드 체인", "중앙 배치"]
-  },
-  {
-    title: "빈티지 레드 바이크",
-    image: "assets/bicycle.webp",
-    category: "자동차·이동수단",
-    categoryLabel: "이동수단",
-    similarity: 90,
-    angle: "90°",
-    light: "스튜디오",
-    zoom: "1배줌",
-    horizon: "수평 0°",
-    verified: true,
-    price: "3,900원",
-    order: 2,
-    tags: ["레드 포인트", "제품 전체", "그레이 배경"]
-  },
-  {
-    title: "여름 시트러스 드링크",
-    image: "assets/fruit-drinks.jpg",
-    category: "음식·음료",
-    categoryLabel: "음료",
-    similarity: 94,
-    angle: "45°",
-    light: "자연광",
-    zoom: "1배줌",
-    horizon: "수평 0°",
-    verified: false,
-    price: "4,900원",
-    order: 1,
-    tags: ["오렌지 톤", "과일 소품", "홍보 스타일"]
-  },
-  {
-    title: "블랙 오버이어 헤드폰",
-    image: "assets/headphones.jpg",
-    category: "전자기기",
-    categoryLabel: "오디오",
-    similarity: 95,
-    angle: "0°",
-    light: "측광",
-    zoom: "1.5배줌",
-    horizon: "수평 0°",
-    verified: true,
-    price: "3,900원",
-    order: 16,
-    tags: ["블랙 제품", "노란 배경", "하드 그림자"]
-  },
-  {
-    title: "다크 톤 필름 카메라",
-    image: "assets/camera.jpg",
-    category: "전자기기",
-    categoryLabel: "카메라",
-    similarity: 91,
-    angle: "45°",
-    light: "측광",
-    zoom: "2배줌",
-    horizon: "수평 0°",
-    verified: true,
-    price: "4,900원",
-    order: 15,
-    tags: ["다크 톤", "렌즈 디테일", "사선 배치"]
-  },
-  {
-    title: "그린 벨벳 라운지 체어",
-    image: "assets/chair.jpg",
-    category: "가구",
-    categoryLabel: "소파",
-    similarity: 93,
-    angle: "0°",
-    light: "자연광",
-    zoom: "1배줌",
-    horizon: "수평 0°",
-    verified: true,
-    price: "4,900원",
-    order: 14,
-    tags: ["그린 벨벳", "정면 구도", "우드 바닥"]
-  },
-  {
-    title: "화이트 미니멀 손목시계",
-    image: "assets/watch.jpg",
-    category: "주얼리·시계",
-    categoryLabel: "시계",
-    similarity: 95,
-    angle: "45°",
-    light: "스튜디오",
-    zoom: "2배줌",
-    horizon: "수평 0°",
-    verified: true,
-    price: "3,900원",
-    order: 13,
-    tags: ["화이트 오브제", "미니멀", "금속 질감"]
-  },
-  {
-    title: "화이트 배경 선글라스",
-    image: "assets/sunglasses.jpg",
-    category: "패션소품",
-    categoryLabel: "선글라스",
-    similarity: 90,
-    angle: "45°",
-    light: "자연광",
-    zoom: "2배줌",
-    horizon: "수평 0°",
-    verified: true,
-    price: "3,900원",
-    order: 12,
-    tags: ["반사광", "화이트 배경", "패션 액세서리"]
-  },
-  {
-    title: "레드 포인트 스니커즈",
-    image: "assets/sneakers.jpg",
-    category: "패션소품",
-    categoryLabel: "스니커즈",
-    similarity: 92,
-    angle: "45°",
-    light: "스튜디오",
-    zoom: "1.5배줌",
-    horizon: "수평 0°",
-    verified: true,
-    price: "3,900원",
-    order: 11,
-    tags: ["레드 포인트", "강한 대비", "제품 단독"]
-  },
-  {
-    title: "초콜릿 크림 케이크",
-    image: "assets/cake.jpg",
-    category: "음식·음료",
-    categoryLabel: "디저트",
-    similarity: 91,
-    angle: "45°",
-    light: "자연광",
-    zoom: "1배줌",
-    horizon: "수평 0°",
-    verified: true,
-    price: "3,900원",
-    order: 10,
-    tags: ["초콜릿 톤", "클로즈업", "질감 강조"]
-  },
-  {
-    title: "브라운 레더 핸드백",
-    image: "assets/handbag.jpg",
-    category: "가방",
-    categoryLabel: "핸드백",
-    similarity: 93,
-    angle: "45°",
-    light: "자연광",
-    zoom: "1.5배줌",
-    horizon: "수평 0°",
-    verified: true,
-    price: "4,900원",
-    order: 9,
-    tags: ["브라운 레더", "골드 하드웨어", "라이프스타일"]
-  }
-];
-
-const libraryCounts = {
-  전체: "1,284",
-  전자기기: "428",
-  가구: "198",
-  "자동차·이동수단": "254",
-  "음식·음료": "276",
-  패션소품: "364",
-  가방: "221",
-  화장품: "157",
-  "주얼리·시계": "109",
-  "홈·인테리어": "146"
+const state = {
+  category: "전체",
+  query: "",
+  cart: []
 };
-const state = { sort: "popular", query: "", category: "전체", minSimilarity: 85, angle: null, light: null, verifiedOnly: true };
-const grid = document.querySelector("#reference-grid");
-const resultCount = document.querySelector("#result-count");
-const pageTitle = document.querySelector("#page-title");
-const pageSubtitle = document.querySelector("#page-subtitle");
+
 const toast = document.querySelector("#toast");
+const productCards = [...document.querySelectorAll(".product-card")];
+const categoryButtons = [...document.querySelectorAll(".category-pill")];
+const searchInput = document.querySelector("#store-search-input");
+const emptyProducts = document.querySelector("#empty-products");
+const cartButton = document.querySelector("#cart-button");
+const cartDrawer = document.querySelector("#cart-drawer");
+const cartItems = document.querySelector("#cart-items");
+const cartCount = document.querySelector("#cart-count");
+const cartTotal = document.querySelector("#cart-total");
 let toastTimer;
-
-function iconDownload() {
-  return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11"></path><path d="m7.5 10.5 4.5 4.5 4.5-4.5"></path><path d="M4 20h16"></path></svg>`;
-}
-
-function matchesFilters(item) {
-  const query = state.query.trim().toLowerCase();
-  const searchable = [item.title, item.category, item.categoryLabel, item.angle, item.light, item.zoom, item.horizon, ...item.tags].filter(Boolean).join(" ").toLowerCase();
-  return (!query || searchable.includes(query)) &&
-    (state.category === "전체" || item.category === state.category) &&
-    item.similarity >= state.minSimilarity &&
-    (!state.angle || item.angle === state.angle) &&
-    (!state.light || item.light === state.light) &&
-    (!state.verifiedOnly || item.verified);
-}
-
-function getVisibleItems() {
-  const items = references.filter(matchesFilters);
-  if (state.sort === "similar") return [...items].sort((a, b) => b.similarity - a.similarity);
-  if (state.sort === "latest") return [...items].sort((a, b) => b.order - a.order);
-  return items;
-}
-
-function renderCards() {
-  const items = getVisibleItems();
-  pageTitle.textContent = state.category === "전체" ? "전체 레퍼런스" : state.category;
-  pageSubtitle.innerHTML = `현재 ${items.length}장 표시 <span>·</span> 카테고리·촬영값 태그 완료`;
-  resultCount.textContent = `${items.length}장 표시 · 전체 ${libraryCounts[state.category]}장`;
-  grid.innerHTML = items.length ? items.map((item, index) => `
-    <article class="reference-card ${index === 0 && state.sort === "popular" ? "is-hovered" : ""}" data-title="${item.title}">
-      <div class="card-media"><img src="${item.image}" alt="${item.title}" loading="lazy" /><button class="capture-action" type="button" data-capture="${item.title}">이 값으로 촬영</button></div>
-      <div class="card-body"><div class="category-line"><span class="category-tag">${item.categoryLabel || item.category}</span><span class="verified-label">${item.verified ? "실촬영 인증" : "참고 이미지"}</span></div><div class="tag-row">${[item.angle, item.light, item.zoom, item.horizon, ...item.tags].map((tag, tagIndex) => `<span class="capture-tag ${tagIndex < 2 ? "primary" : ""}">${tag}</span>`).join("")}</div><div class="card-footer"><span class="card-title">${item.title}</span><span class="card-price">${item.price}</span><button class="download-button" type="button" aria-label="${item.title} 다운로드" data-download="${item.title}">${iconDownload()}</button></div></div>
-    </article>`).join("") : `<div class="empty-state"><strong>조건에 맞는 레퍼런스가 없습니다.</strong><span>카테고리나 촬영 필터를 한 단계 완화해 보세요.</span></div>`;
-}
 
 function showToast(message) {
   toast.textContent = message;
   toast.classList.add("show");
   window.clearTimeout(toastTimer);
-  toastTimer = window.setTimeout(() => toast.classList.remove("show"), 2600);
+  toastTimer = window.setTimeout(() => toast.classList.remove("show"), 2400);
 }
 
-function setActiveButton(selector, activeButton) {
-  document.querySelectorAll(selector).forEach((button) => button.classList.toggle("active", button === activeButton));
+function setCategory(category) {
+  state.category = category;
+  categoryButtons.forEach((button) => button.classList.toggle("active", button.dataset.category === category));
+  document.querySelectorAll(".nav-link").forEach((link) => {
+    const linkCategory = link.dataset.categoryLink || (link.getAttribute("href") === "#products" && link.textContent.trim() === "스마트 조명" ? "스마트 조명" : null);
+    link.classList.toggle("active", linkCategory === category);
+  });
+  applyProductFilters();
 }
 
-document.querySelector("#search-input").addEventListener("input", (event) => { state.query = event.target.value; renderCards(); });
-document.addEventListener("keydown", (event) => { if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") { event.preventDefault(); document.querySelector("#search-input").focus(); } });
+function applyProductFilters() {
+  const query = state.query.trim().toLowerCase();
+  let visible = 0;
+  productCards.forEach((card) => {
+    const searchable = card.dataset.search.toLowerCase();
+    const matchesCategory = state.category === "전체" || card.dataset.category === state.category;
+    const matchesSearch = !query || searchable.includes(query);
+    const shouldShow = matchesCategory && matchesSearch;
+    card.classList.toggle("is-hidden", !shouldShow);
+    if (shouldShow) visible += 1;
+  });
+  emptyProducts.hidden = visible > 0;
+}
 
-document.querySelectorAll(".sort-tab").forEach((tab) => tab.addEventListener("click", () => { setActiveButton(".sort-tab", tab); state.sort = tab.dataset.sort; renderCards(); }));
-document.querySelectorAll(".category-row").forEach((row) => row.addEventListener("click", () => { setActiveButton(".category-row", row); state.category = row.dataset.category; renderCards(); showToast(`${state.category} 카테고리로 필터링했습니다.`); }));
-document.querySelectorAll(".chip-row").forEach((group) => group.addEventListener("click", (event) => {
-  const chip = event.target.closest(".filter-chip");
-  if (!chip) return;
-  setActiveButton(`[data-chip-group="${group.dataset.chipGroup}"] .filter-chip`, chip);
-  const value = chip.dataset.chip === "전체" ? null : chip.dataset.chip;
-  if (group.dataset.chipGroup === "angle") state.angle = value;
-  if (group.dataset.chipGroup === "light") state.light = value;
-  renderCards();
-  showToast(`${chip.dataset.chip === "전체" ? "전체" : chip.dataset.chip} 필터를 적용했습니다.`);
+categoryButtons.forEach((button) => button.addEventListener("click", () => {
+  setCategory(button.dataset.category);
+  document.querySelector("#products").scrollIntoView({ behavior: "smooth", block: "start" });
 }));
 
-const range = document.querySelector("#similarity-range");
-function updateRange() { const value = Number(range.value); const percent = ((value - Number(range.min)) / (Number(range.max) - Number(range.min))) * 100; state.minSimilarity = value; range.style.setProperty("--range-progress", `${percent}%`); document.querySelector("#similarity-value").textContent = `${value}% 이상`; renderCards(); }
-range.addEventListener("input", updateRange);
-state.minSimilarity = Number(range.value);
-range.style.setProperty("--range-progress", `${((state.minSimilarity - 50) / 50) * 100}%`);
-
-const toggle = document.querySelector(".toggle");
-toggle.addEventListener("click", () => { state.verifiedOnly = !state.verifiedOnly; toggle.classList.toggle("active", state.verifiedOnly); toggle.setAttribute("aria-checked", String(state.verifiedOnly)); renderCards(); showToast(state.verifiedOnly ? "실촬영 인증 레퍼런스만 표시합니다." : "참고 이미지까지 모두 표시합니다."); });
-document.querySelector("#upload-button").addEventListener("click", () => document.querySelector("#upload-input").click());
-document.querySelector("#upload-input").addEventListener("change", (event) => { const file = event.target.files?.[0]; if (file) showToast(`${file.name} 업로드를 시작했습니다.`); });
-
-const profileButton = document.querySelector("#profile-button");
-const profilePopover = document.querySelector("#profile-popover");
-profileButton.addEventListener("click", (event) => { event.stopPropagation(); const isOpen = profilePopover.hidden; profilePopover.hidden = !isOpen; profileButton.setAttribute("aria-expanded", String(isOpen)); });
-document.addEventListener("click", (event) => { if (!event.target.closest(".profile-wrap")) { profilePopover.hidden = true; profileButton.setAttribute("aria-expanded", "false"); } });
-
-document.addEventListener("click", (event) => {
-  const capture = event.target.closest("[data-capture]");
-  const download = event.target.closest("[data-download]");
-  const toastTrigger = event.target.closest("[data-toast]");
-  if (capture) showToast(`${capture.dataset.capture}의 촬영값을 카메라에 적용합니다.`);
-  else if (download) showToast(`${download.dataset.download} 레퍼런스를 저장했습니다.`);
-  else if (toastTrigger) showToast(toastTrigger.dataset.toast);
+searchInput.addEventListener("input", (event) => {
+  state.query = event.target.value;
+  applyProductFilters();
+  if (state.query.trim()) document.querySelector("#products").scrollIntoView({ behavior: "smooth", block: "start" });
 });
 
-renderCards();
+document.querySelector("#show-all-products").addEventListener("click", () => {
+  searchInput.value = "";
+  state.query = "";
+  setCategory("전체");
+  document.querySelector("#products").scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
+document.querySelectorAll("[data-category-link]").forEach((link) => link.addEventListener("click", (event) => {
+  event.preventDefault();
+  const category = link.dataset.categoryLink;
+  if (category === "패키지") {
+    document.querySelector("#packages").scrollIntoView({ behavior: "smooth", block: "start" });
+    return;
+  }
+  setCategory(category);
+  document.querySelector("#products").scrollIntoView({ behavior: "smooth", block: "start" });
+}));
+
+function formatPrice(price) {
+  return `${Number(price).toLocaleString("ko-KR")}원`;
+}
+
+function renderCart() {
+  const quantity = state.cart.reduce((sum, item) => sum + item.quantity, 0);
+  const total = state.cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  cartCount.textContent = quantity;
+  cartTotal.textContent = formatPrice(total);
+  cartItems.innerHTML = state.cart.length ? state.cart.map((item) => `
+    <div class="cart-item">
+      <div class="cart-item-info"><strong>${item.name}</strong><span>${formatPrice(item.price)} · ${item.quantity}개</span></div>
+      <button class="cart-item-remove" type="button" data-remove-cart="${item.name}" aria-label="${item.name} 삭제">×</button>
+    </div>`).join("") : `<p class="cart-empty">아직 담긴 상품이 없습니다.</p>`;
+}
+
+function addToCart(name, price) {
+  const existing = state.cart.find((item) => item.name === name);
+  if (existing) existing.quantity += 1;
+  else state.cart.push({ name, price: Number(price), quantity: 1 });
+  renderCart();
+  showToast(`${name}을(를) 장바구니에 담았습니다.`);
+}
+
+document.addEventListener("click", (event) => {
+  const addButton = event.target.closest("[data-add]");
+  const removeButton = event.target.closest("[data-remove-cart]");
+  const toastButton = event.target.closest("[data-toast]");
+  if (addButton) addToCart(addButton.dataset.add, addButton.dataset.price);
+  if (removeButton) {
+    state.cart = state.cart.filter((item) => item.name !== removeButton.dataset.removeCart);
+    renderCart();
+  }
+  if (toastButton) showToast(toastButton.dataset.toast);
+});
+
+cartButton.addEventListener("click", (event) => {
+  event.stopPropagation();
+  const nextOpen = cartDrawer.hidden;
+  cartDrawer.hidden = !nextOpen;
+  cartButton.setAttribute("aria-expanded", String(nextOpen));
+});
+
+document.querySelector("#cart-close").addEventListener("click", () => {
+  cartDrawer.hidden = true;
+  cartButton.setAttribute("aria-expanded", "false");
+});
+
+document.addEventListener("click", (event) => {
+  if (!event.target.closest(".cart-drawer") && !event.target.closest("#cart-button")) {
+    cartDrawer.hidden = true;
+    cartButton.setAttribute("aria-expanded", "false");
+  }
+});
+
+renderCart();
+applyProductFilters();
