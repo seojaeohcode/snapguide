@@ -2,7 +2,8 @@ const references = [
   {
     title: "실버 맥북 · 침구 위",
     image: "assets/macbook.webp",
-    category: "가전제품",
+    category: "전자기기",
+    categoryLabel: "노트북",
     similarity: 94,
     angle: "45°",
     light: "자연광",
@@ -16,7 +17,8 @@ const references = [
   {
     title: "월넛 사이드 테이블",
     image: "assets/side-table.webp",
-    category: "가구",
+    category: "홈·인테리어",
+    categoryLabel: "사이드 테이블",
     similarity: 92,
     angle: "45°",
     light: "자연광",
@@ -30,7 +32,8 @@ const references = [
   {
     title: "진회색 스포츠카",
     image: "assets/car.webp",
-    category: "자동차",
+    category: "자동차·이동수단",
+    categoryLabel: "스포츠카",
     similarity: 96,
     angle: "0°",
     light: "역광",
@@ -45,6 +48,7 @@ const references = [
     title: "새틴 위 투명 향수",
     image: "assets/perfume.webp",
     category: "화장품",
+    categoryLabel: "향수",
     similarity: 93,
     angle: "45°",
     light: "자연광",
@@ -72,7 +76,8 @@ const references = [
   {
     title: "크림 모노그램 바니티",
     image: "assets/vanity-bag.webp",
-    category: "화장품",
+    category: "가방",
+    categoryLabel: "바니티 백",
     similarity: 91,
     angle: "45°",
     light: "자연광",
@@ -86,7 +91,7 @@ const references = [
   {
     title: "빈티지 레드 바이크",
     image: "assets/bicycle.webp",
-    category: "자동차",
+    category: "자동차·이동수단",
     categoryLabel: "이동수단",
     similarity: 90,
     angle: "90°",
@@ -101,7 +106,8 @@ const references = [
   {
     title: "여름 시트러스 드링크",
     image: "assets/fruit-drinks.jpg",
-    category: "음식",
+    category: "음식·음료",
+    categoryLabel: "음료",
     similarity: 94,
     angle: "45°",
     light: "자연광",
@@ -111,10 +117,141 @@ const references = [
     price: "4,900원",
     order: 1,
     tags: ["오렌지 톤", "과일 소품", "홍보 스타일"]
+  },
+  {
+    title: "블랙 오버이어 헤드폰",
+    image: "assets/headphones.jpg",
+    category: "전자기기",
+    categoryLabel: "오디오",
+    similarity: 95,
+    angle: "0°",
+    light: "측광",
+    zoom: "1.5배줌",
+    horizon: "수평 0°",
+    verified: true,
+    price: "3,900원",
+    order: 16,
+    tags: ["블랙 제품", "노란 배경", "하드 그림자"]
+  },
+  {
+    title: "다크 톤 필름 카메라",
+    image: "assets/camera.jpg",
+    category: "전자기기",
+    categoryLabel: "카메라",
+    similarity: 91,
+    angle: "45°",
+    light: "측광",
+    zoom: "2배줌",
+    horizon: "수평 0°",
+    verified: true,
+    price: "4,900원",
+    order: 15,
+    tags: ["다크 톤", "렌즈 디테일", "사선 배치"]
+  },
+  {
+    title: "그린 벨벳 라운지 체어",
+    image: "assets/chair.jpg",
+    category: "가구",
+    categoryLabel: "소파",
+    similarity: 93,
+    angle: "0°",
+    light: "자연광",
+    zoom: "1배줌",
+    horizon: "수평 0°",
+    verified: true,
+    price: "4,900원",
+    order: 14,
+    tags: ["그린 벨벳", "정면 구도", "우드 바닥"]
+  },
+  {
+    title: "화이트 미니멀 손목시계",
+    image: "assets/watch.jpg",
+    category: "주얼리·시계",
+    categoryLabel: "시계",
+    similarity: 95,
+    angle: "45°",
+    light: "스튜디오",
+    zoom: "2배줌",
+    horizon: "수평 0°",
+    verified: true,
+    price: "3,900원",
+    order: 13,
+    tags: ["화이트 오브제", "미니멀", "금속 질감"]
+  },
+  {
+    title: "화이트 배경 선글라스",
+    image: "assets/sunglasses.jpg",
+    category: "패션소품",
+    categoryLabel: "선글라스",
+    similarity: 90,
+    angle: "45°",
+    light: "자연광",
+    zoom: "2배줌",
+    horizon: "수평 0°",
+    verified: true,
+    price: "3,900원",
+    order: 12,
+    tags: ["반사광", "화이트 배경", "패션 액세서리"]
+  },
+  {
+    title: "레드 포인트 스니커즈",
+    image: "assets/sneakers.jpg",
+    category: "패션소품",
+    categoryLabel: "스니커즈",
+    similarity: 92,
+    angle: "45°",
+    light: "스튜디오",
+    zoom: "1.5배줌",
+    horizon: "수평 0°",
+    verified: true,
+    price: "3,900원",
+    order: 11,
+    tags: ["레드 포인트", "강한 대비", "제품 단독"]
+  },
+  {
+    title: "초콜릿 크림 케이크",
+    image: "assets/cake.jpg",
+    category: "음식·음료",
+    categoryLabel: "디저트",
+    similarity: 91,
+    angle: "45°",
+    light: "자연광",
+    zoom: "1배줌",
+    horizon: "수평 0°",
+    verified: true,
+    price: "3,900원",
+    order: 10,
+    tags: ["초콜릿 톤", "클로즈업", "질감 강조"]
+  },
+  {
+    title: "브라운 레더 핸드백",
+    image: "assets/handbag.jpg",
+    category: "가방",
+    categoryLabel: "핸드백",
+    similarity: 93,
+    angle: "45°",
+    light: "자연광",
+    zoom: "1.5배줌",
+    horizon: "수평 0°",
+    verified: true,
+    price: "4,900원",
+    order: 9,
+    tags: ["브라운 레더", "골드 하드웨어", "라이프스타일"]
   }
 ];
 
-const libraryCounts = { 전체: "1,284", 가전제품: "312", 가구: "198", 자동차: "241", 음식: "176", 화장품: "157" };
+const libraryCounts = {
+  전체: "1,284",
+  전자기기: "428",
+  가구: "198",
+  "자동차·이동수단": "254",
+  "음식·음료": "276",
+  패션소품: "364",
+  가방: "221",
+  화장품: "157",
+  "주얼리·시계": "109",
+  "홈·인테리어": "146"
+};
 const state = { sort: "popular", query: "", category: "전체", minSimilarity: 85, angle: null, light: null, verifiedOnly: true };
 const grid = document.querySelector("#reference-grid");
 const resultCount = document.querySelector("#result-count");
@@ -152,7 +289,7 @@ function renderCards() {
   resultCount.textContent = `${items.length}장 표시 · 전체 ${libraryCounts[state.category]}장`;
   grid.innerHTML = items.length ? items.map((item, index) => `
     <article class="reference-card ${index === 0 && state.sort === "popular" ? "is-hovered" : ""}" data-title="${item.title}">
-      <div class="card-media"><img src="${item.image}" alt="${item.title}" loading="lazy" /><span class="similarity-badge">유사도 ${item.similarity}%</span><button class="capture-action" type="button" data-capture="${item.title}">이 값으로 촬영</button></div>
+      <div class="card-media"><img src="${item.image}" alt="${item.title}" loading="lazy" /><button class="capture-action" type="button" data-capture="${item.title}">이 값으로 촬영</button></div>
       <div class="card-body"><div class="category-line"><span class="category-tag">${item.categoryLabel || item.category}</span><span class="verified-label">${item.verified ? "실촬영 인증" : "참고 이미지"}</span></div><div class="tag-row">${[item.angle, item.light, item.zoom, item.horizon, ...item.tags].map((tag, tagIndex) => `<span class="capture-tag ${tagIndex < 2 ? "primary" : ""}">${tag}</span>`).join("")}</div><div class="card-footer"><span class="card-title">${item.title}</span><span class="card-price">${item.price}</span><button class="download-button" type="button" aria-label="${item.title} 다운로드" data-download="${item.title}">${iconDownload()}</button></div></div>
     </article>`).join("") : `<div class="empty-state"><strong>조건에 맞는 레퍼런스가 없습니다.</strong><span>카테고리나 촬영 필터를 한 단계 완화해 보세요.</span></div>`;
 }
