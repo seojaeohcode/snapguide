@@ -41,7 +41,15 @@
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4.5A2.5 2.5 0 0 1 8.5 2h7A2.5 2.5 0 0 1 18 4.5V21l-6-3.7L6 21V4.5Z"></path></svg>
             북마크
           </button>
-          <button class="profile" type="button" aria-label="프로필" data-toast="프로필 메뉴를 준비 중입니다.">SJ</button>
+          <div class="profile-wrap">
+            <button class="profile" id="profile-button" type="button" aria-label="게스트 프로필 열기" aria-expanded="false">SJ</button>
+            <div class="profile-popover" id="profile-popover" hidden>
+              <div class="profile-popover-head"><span class="profile-avatar">SJ</span><div><strong>게스트 워크스페이스</strong><small>이 기기에서만 사용하는 프로필</small></div></div>
+              <div class="profile-stat"><span>저장한 레퍼런스</span><strong>8장</strong></div>
+              <div class="profile-stat"><span>최근 촬영 유사도</span><strong>85%</strong></div>
+              <button class="profile-action" type="button" data-toast="현재는 로그인 없이 로컬 모드로 사용 중입니다.">로컬 프로필 안내 <span>↗</span></button>
+            </div>
+          </div>
         </div>
       </header>
 
@@ -49,8 +57,8 @@
         <div class="sidebar-section category-section">
           <div class="section-label">카테고리</div>
           <nav class="category-list" aria-label="카테고리">
-            <button class="category-row" type="button" data-category="전체" data-count="1,284"><span class="category-icon grid-icon" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>전체</span><span class="count-badge">1,284</span></button>
-            <button class="category-row active" type="button" data-category="가전제품" data-count="312"><span class="category-icon monitor-icon" aria-hidden="true"></span><span>가전제품</span><span class="count-badge">312</span></button>
+            <button class="category-row active" type="button" data-category="전체" data-count="1,284"><span class="category-icon grid-icon" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>전체</span><span class="count-badge">1,284</span></button>
+            <button class="category-row" type="button" data-category="가전제품" data-count="312"><span class="category-icon monitor-icon" aria-hidden="true"></span><span>가전제품</span><span class="count-badge">312</span></button>
             <button class="category-row" type="button" data-category="가구" data-count="198"><span class="category-icon chair-icon" aria-hidden="true"></span><span>가구</span><span class="count-badge">198</span></button>
             <button class="category-row" type="button" data-category="자동차" data-count="241"><span class="category-icon car-icon" aria-hidden="true"></span><span>자동차</span><span class="count-badge">241</span></button>
             <button class="category-row" type="button" data-category="음식" data-count="176"><span class="category-icon food-icon" aria-hidden="true">✣</span><span>음식</span><span class="count-badge">176</span></button>
@@ -68,14 +76,14 @@
           <div class="filter-block">
             <div class="filter-title-row"><span>촬영 각도</span></div>
             <div class="chip-row" data-chip-group="angle">
-              <button type="button" class="filter-chip" data-chip="0°">0°</button><button type="button" class="filter-chip active" data-chip="45°">45°</button><button type="button" class="filter-chip" data-chip="90°">90°</button><button type="button" class="filter-chip" data-chip="하이앵글">하이앵글</button><button type="button" class="filter-chip" data-chip="로우앵글">로우앵글</button>
+              <button type="button" class="filter-chip active" data-chip="전체">전체</button><button type="button" class="filter-chip" data-chip="0°">0°</button><button type="button" class="filter-chip" data-chip="45°">45°</button><button type="button" class="filter-chip" data-chip="90°">90°</button><button type="button" class="filter-chip" data-chip="하이앵글">하이앵글</button><button type="button" class="filter-chip" data-chip="로우앵글">로우앵글</button>
             </div>
           </div>
 
           <div class="filter-block">
             <div class="filter-title-row"><span>조명</span></div>
             <div class="chip-row" data-chip-group="light">
-              <button type="button" class="filter-chip active" data-chip="자연광">자연광</button><button type="button" class="filter-chip" data-chip="측광">측광</button><button type="button" class="filter-chip" data-chip="역광">역광</button><button type="button" class="filter-chip" data-chip="스튜디오">스튜디오</button>
+              <button type="button" class="filter-chip active" data-chip="전체">전체</button><button type="button" class="filter-chip" data-chip="자연광">자연광</button><button type="button" class="filter-chip" data-chip="측광">측광</button><button type="button" class="filter-chip" data-chip="역광">역광</button><button type="button" class="filter-chip" data-chip="스튜디오">스튜디오</button>
             </div>
           </div>
 
@@ -85,14 +93,14 @@
 
       <main class="main-content">
         <section class="content-heading">
-          <div><p class="eyebrow"><span class="eyebrow-dot"></span> PHOTO REFERENCE INDEX</p><h1 id="page-title">가전제품</h1><p class="subheading" id="page-subtitle">레퍼런스 312장 <span>·</span> 촬영값 역산 완료</p></div>
+          <div><p class="eyebrow"><span class="eyebrow-dot"></span> PHOTO REFERENCE INDEX</p><h1 id="page-title">전체 레퍼런스</h1><p class="subheading" id="page-subtitle">태그가 등록된 레퍼런스 <span>·</span> 촬영값 역산 완료</p></div>
           <div class="heading-actions">
             <button class="icon-button" type="button" data-toast="보기 옵션을 준비 중입니다." aria-label="보기 옵션"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path><circle cx="8" cy="7" r="2"></circle><circle cx="15" cy="12" r="2"></circle><circle cx="11" cy="17" r="2"></circle></svg></button>
             <button class="upload-button" id="upload-button" type="button"><span>+</span> 이미지 업로드</button><input id="upload-input" type="file" accept="image/*" hidden />
           </div>
         </section>
 
-        <div class="content-toolbar"><div class="sort-tabs" role="tablist" aria-label="정렬"><button class="sort-tab active" type="button" data-sort="popular" role="tab">인기순</button><button class="sort-tab" type="button" data-sort="latest" role="tab">최신순</button><button class="sort-tab" type="button" data-sort="similar" role="tab">유사도순</button></div><span class="result-count" id="result-count">312 references</span></div>
+        <div class="content-toolbar"><div class="sort-tabs" role="tablist" aria-label="정렬"><button class="sort-tab active" type="button" data-sort="popular" role="tab">인기순</button><button class="sort-tab" type="button" data-sort="latest" role="tab">최신순</button><button class="sort-tab" type="button" data-sort="similar" role="tab">유사도순</button></div><span class="result-count" id="result-count">7 shown</span></div>
         <section id="reference-grid" class="reference-grid" aria-live="polite"></section>
       </main>
 
